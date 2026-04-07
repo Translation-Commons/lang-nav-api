@@ -12,8 +12,12 @@ app.use(express.json());
   return this.toString();
 };
 
-app.use("/api/territories", territoryRoutes);
-app.use("/api/ext", extRoutes);
-app.use("/api/curated", curatedRoutes);
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
+app.use("/territories", territoryRoutes);
+app.use("/ext", extRoutes);
+app.use("/curated", curatedRoutes);
 
 export default app;
