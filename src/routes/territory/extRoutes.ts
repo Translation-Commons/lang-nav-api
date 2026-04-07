@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   getCountryCoords,
   getTerritoryGdpLiteracy,
-} from "../../controllers/territory/territoryExtController.js";
+} from "../../controllers/territory/territoryExtController";
 
 const router = Router();
 

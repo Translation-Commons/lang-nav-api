@@ -1,8 +1,8 @@
 import express from "express";
 
-import territoryRoutes from "./routes/territory/territoryRoutes.js";
-import extRoutes from "./routes/territory/extRoutes.js";
-import curatedRoutes from "./routes/territory/curatedRoutes.js";
+import territoryRoutes from "./routes/territory/territoryRoutes";
+import extRoutes from "./routes/territory/extRoutes";
+import curatedRoutes from "./routes/territory/curatedRoutes";
 
 const app = express();
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getCuratedTerritories } from "../../controllers/territory/curatedController.js";
+import { getCuratedTerritories } from "../../controllers/territory/curatedController";
 
 const router = Router();
 

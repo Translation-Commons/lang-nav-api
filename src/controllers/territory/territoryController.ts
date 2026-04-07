@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { mockTerritories } from "../../data/territory/territories.mock.js";
+import { mockTerritories } from "../../data/territory/territories.mock";
 
 export const getTerritoryById = (req: Request, res: Response) => {
   const { id } = req.params;

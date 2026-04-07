@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 
-import { mockCountryCoords } from "../../data/territory/country_coord.mock.js";
-import { mockTerritoryGdpLiteracy } from "../../data/territory/territories_gdp_literacy.mock.js";
+import { mockCountryCoords } from "../../data/territory/country_coord.mock";
+import { mockTerritoryGdpLiteracy } from "../../data/territory/territories_gdp_literacy.mock";
 
 export const getCountryCoords = (_req: Request, res: Response) => {
   res.status(200).json({

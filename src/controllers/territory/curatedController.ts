@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { mockTerritoriesRaw } from "../../data/territory/territories_raw.mock.js";
+import { mockTerritoriesRaw } from "../../data/territory/territories_raw.mock";
 
 export const getCuratedTerritories = (req: Request, res: Response) => {
   res.status(200).json({

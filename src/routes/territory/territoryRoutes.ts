@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   getTerritoryById,
   getTerritories,
-} from "../../controllers/territory/territoryController.js";
+} from "../../controllers/territory/territoryController";
 
 const router = Router();
 

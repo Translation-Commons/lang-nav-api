@@ -1,4 +1,4 @@
-import type { Territory } from "../../models/territory/Territory.js";
+import type { Territory } from "../../models/territory/Territory";
 
 export const mockTerritories: Territory[] = [
   {
