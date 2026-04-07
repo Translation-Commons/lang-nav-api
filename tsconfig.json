@@ -8,12 +8,14 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "CommonJS",
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "target": "esnext",
     // For nodejs:
     "lib": ["esnext"],
     "types": ["node"],
     // and npm install -D @types/node
+
+    "ignoreDeprecations": "5.0",
 
     // Other Outputs
     "sourceMap": false,
@@ -21,7 +23,6 @@
     "declarationMap": false,
 
     // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
     // Style Options
@@ -36,7 +37,6 @@
     "strict": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "ignoreDeprecations": "5.0"
+    "esModuleInterop": true
   }
 }
