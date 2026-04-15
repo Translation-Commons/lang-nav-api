@@ -5,6 +5,8 @@ import curatedRoutes from "./routes/territory/curatedRoutes";
 import variantTagRoutes from "./routes/varianttag/variantTagRoutes";
 import variantTagExtRoutes from "./routes/varianttag/variantTagExtRoutes";
 import writingSystemRoutes from "./routes/writingsystem/writingSystemRoutes";
+import writingSystemExtRoutes from "./routes/writingsystem/writingSystemExtRoutes";
+import curatedWritingSystemRoutes from "./routes/writingsystem/curatedWritingSystemRoutes";
 import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
@@ -19,7 +21,9 @@ app.use("/api/varianttags", variantTagRoutes);
 app.use("/api/writingsystems", writingSystemRoutes);
 app.use("/api/ext", extRoutes);
 app.use("/api/ext", variantTagExtRoutes);
+app.use("/api/ext", writingSystemExtRoutes);
 app.use("/api/curated", curatedRoutes);
+app.use("/api/curated", curatedWritingSystemRoutes);
 
 app.use(errorHandler);
 

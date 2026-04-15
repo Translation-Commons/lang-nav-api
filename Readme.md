@@ -35,10 +35,12 @@ npm run dev
 - `GET /api/ext/geo/country-coord` — country coordinates
 - `GET /api/ext/un/territory-gdp-literacy` — GDP and literacy data
 - `GET /api/ext/iana/variant-tags` — IANA variant tag data
+- `GET /api/ext/unicode/cldr-coverage` — CLDR locale coverage data
 
 ### Curated Data
 
 - `GET /api/curated/territories` — curated territory data
+- `GET /api/curated/writingsystems` — curated writing system data
 
 ## Deployment (GoDaddy cPanel)
 
