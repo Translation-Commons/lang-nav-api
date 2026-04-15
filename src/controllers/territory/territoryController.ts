@@ -1,27 +1,16 @@
 import type { Request, Response } from "express";
 import { mockTerritories } from "../../data/territory/territories.mock";
+import { sendList, sendOne, sendNotFound } from "../../utils/response";
 
 export const getTerritoryById = (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = req.params["id"] as string;
   const territory = mockTerritories.find((t) => t.id === id);
-
-  if (!territory) {
-    res.status(404).json({
-      error: {
-        code: "NOT_FOUND",
-        message: `Territory '${id}' not found`,
-        status: 404,
-      },
-    });
-    return;
-  }
-
-  res.status(200).json({ data: territory });
+  if (!territory) return sendNotFound(res, id);
+  sendOne(res, territory);
 };
 
 export const getTerritories = (req: Request, res: Response) => {
   const { q, inTerritory } = req.query;
-
   let result = mockTerritories;
 
   if (q)
@@ -34,8 +23,5 @@ export const getTerritories = (req: Request, res: Response) => {
       (t) => t.contained_un_region === (inTerritory as string).toUpperCase(),
     );
 
-  res.status(200).json({
-    data: result,
-    meta: { total: result.length, page: 1, limit: 50 },
-  });
+  sendList(res, result, result.length);
 };
