@@ -51,7 +51,7 @@ After pushing code to GitHub, update the app on cPanel:
 source /home/ldijnpfhyij5/nodevenv/lang-nav-api/24/bin/activate
 cd ~/lang-nav-api
 git pull
-npm install
+npm install --include=dev
 ./node_modules/.bin/tsc
 ```
 
