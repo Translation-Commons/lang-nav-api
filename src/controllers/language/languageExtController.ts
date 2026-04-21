@@ -6,8 +6,6 @@ import { mockFamilies6395 } from "../../data/language/families_639_5.mock";
 import { mockLanguageNamesFrench } from "../../data/language/language_names_french.mock";
 import { mockFamiliesToLanguages } from "../../data/language/families_to_languages.mock";
 import { mockIsoRetirements } from "../../data/language/iso_retirements.mock";
-import { mockEthnologue2012 } from "../../data/language/ethnologue2012.mock";
-import { mockEthnologue2025 } from "../../data/language/ethnologue2025.mock";
 import { sendList } from "../../utils/response";
 
 export const getGlottologLanguages = (_req: Request, res: Response) =>
@@ -33,9 +31,3 @@ export const getFamiliesToLanguages = (_req: Request, res: Response) =>
 
 export const getIsoRetirements = (_req: Request, res: Response) =>
   sendList(res, mockIsoRetirements, mockIsoRetirements.length);
-
-export const getEthnologue2012 = (_req: Request, res: Response) =>
-  sendList(res, mockEthnologue2012, mockEthnologue2012.length);
-
-export const getEthnologue2025 = (_req: Request, res: Response) =>
-  sendList(res, mockEthnologue2025, mockEthnologue2025.length);

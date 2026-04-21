@@ -8,8 +8,6 @@ import {
   getLanguageNamesFrench,
   getFamiliesToLanguages,
   getIsoRetirements,
-  getEthnologue2012,
-  getEthnologue2025,
 } from "../../controllers/language/languageExtController";
 
 const router = Router();
@@ -22,7 +20,5 @@ router.get("/iso/macrolanguages", getMacrolanguages);
 router.get("/iso/families", getFamilies6395);
 router.get("/iso/family-language-links", getFamiliesToLanguages);
 router.get("/iso/retirements", getIsoRetirements);
-router.get("/ethnologue/2012", getEthnologue2012);
-router.get("/ethnologue/2025", getEthnologue2025);
 
 export default router;

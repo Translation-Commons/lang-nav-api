@@ -50,8 +50,6 @@ npm run dev
 - `GET /api/ext/iso/families` — ISO 639-5 language families
 - `GET /api/ext/iso/family-language-links` — family to language links
 - `GET /api/ext/iso/retirements` — retired ISO codes
-- `GET /api/ext/ethnologue/2012` — Ethnologue 2012 vitality data
-- `GET /api/ext/ethnologue/2025` — Ethnologue 2025 vitality data
 
 ### Curated Data
 
