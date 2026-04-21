@@ -1,6 +1,6 @@
-import type { VariantTag } from "../../models/varianttag/VariantTag";
+import type { Variant } from "../../models/variant/Variant";
 
-export const mockVariantTags: VariantTag[] = [
+export const mockVariant: Variant[] = [
   {
     id: "1901",
     name_display: "Traditional German orthography",

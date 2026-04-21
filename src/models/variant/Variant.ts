@@ -1,4 +1,4 @@
-export interface VariantTag {
+export interface Variant {
   id: string;
   name_display: string;
   added: string | null;
