@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec tsx src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "seed:territories": "tsx src/db/seeds/seedTerritories.ts",
-    "seed:all": "npm run seed:territories"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
