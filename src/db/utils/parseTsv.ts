@@ -1,7 +1,13 @@
 import fs from "fs";
 import path from "path";
 
+
+
 export function parseTsv(filePath: string): Record<string, string>[] {
+
+  console.log("parseTsv raw path:", JSON.stringify(filePath));
+  console.log("existsSync:", fs.existsSync(filePath));
+  
   const content = fs.readFileSync(filePath, "utf-8");
   const lines = content
     .split("\n")
@@ -23,7 +29,6 @@ export function parseTsv(filePath: string): Record<string, string>[] {
 
   return rows;
 }
-
 export function parseCsv(filePath: string): Record<string, string>[] {
   const content = fs.readFileSync(filePath, "utf-8");
   const lines = content.split("\n").filter((line) => line.trim());

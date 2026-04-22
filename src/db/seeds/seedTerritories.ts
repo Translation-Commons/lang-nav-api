@@ -53,7 +53,7 @@ async function seedCountryCoord() {
     if (!row["Alpha-2 code"]) continue;
     await pool.execute(
       `INSERT INTO country_coord 
-        (alpha2_code, name, alpha3_code, code_numeric, latitude, longitude)
+        (alpha2_code, name, alpha3_code, numeric_code, latitude, longitude)
        VALUES (?, ?, ?, ?, ?, ?)
        ON DUPLICATE KEY UPDATE
         name = VALUES(name),
@@ -138,7 +138,7 @@ async function seedTerritoryEntity() {
       t.territory_code,
       c.alpha2_code,
       c.alpha3_code,
-      c.code_numeric,
+      c.numeric_code
       COALESCE(n.exonym, t.territory_name),
       n.endonym,
       n.endonym_source,
