@@ -76,5 +76,6 @@ npm install --include=dev
 
 ## Notes
 
-- Currently using mock data
-- MySQL integration pending
+- Territoy endpoints connected to real database
+- Other entities (Language, WritingSystem, VariantTag) still using mock data
+- MySQL hosted on GoDaddy cPanel

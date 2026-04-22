@@ -1,10 +1,15 @@
 import type { Request, Response } from "express";
-import { mockCountryCoords } from "../../data/territory/country_coord.mock";
-import { mockTerritoryGdpLiteracy } from "../../data/territory/territories_gdp_literacy.mock";
+import pool from "../../db/connection";
 import { sendList } from "../../utils/response";
 
-export const getCountryCoords = (_req: Request, res: Response) =>
-  sendList(res, mockCountryCoords, mockCountryCoords.length);
+export const getCountryCoords = async (_req: Request, res: Response) => {
+  const [rows] = (await pool.execute("SELECT * FROM country_coord")) as any[];
+  sendList(res, rows, rows.length);
+};
 
-export const getTerritoryGdpLiteracy = (_req: Request, res: Response) =>
-  sendList(res, mockTerritoryGdpLiteracy, mockTerritoryGdpLiteracy.length);
+export const getTerritoryGdpLiteracy = async (_req: Request, res: Response) => {
+  const [rows] = (await pool.execute(
+    "SELECT * FROM territories_gdp_literacy",
+  )) as any[];
+  sendList(res, rows, rows.length);
+};

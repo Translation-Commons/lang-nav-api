@@ -1,27 +1,33 @@
 import type { Request, Response } from "express";
-import { mockTerritories } from "../../data/territory/territories.mock";
+import pool from "../../db/connection";
 import { sendList, sendOne, sendNotFound } from "../../utils/response";
 
-export const getTerritoryById = (req: Request, res: Response) => {
+export const getTerritoryById = async (req: Request, res: Response) => {
   const id = req.params["id"] as string;
-  const territory = mockTerritories.find((t) => t.id === id);
-  if (!territory) return sendNotFound(res, id);
-  sendOne(res, territory);
+  const [rows] = (await pool.execute("SELECT * FROM Territory WHERE id = ?", [
+    id,
+  ])) as any[];
+
+  if (rows.length === 0) return sendNotFound(res, id);
+  sendOne(res, rows[0]);
 };
 
-export const getTerritories = (req: Request, res: Response) => {
+export const getTerritories = async (req: Request, res: Response) => {
   const { q, inTerritory } = req.query;
-  let result = mockTerritories;
 
-  if (q)
-    result = result.filter((t) =>
-      t.name_display.toLowerCase().includes((q as string).toLowerCase()),
-    );
+  let sql = "SELECT * FROM Territory WHERE 1=1";
+  const params: string[] = [];
 
-  if (inTerritory)
-    result = result.filter(
-      (t) => t.contained_un_region === (inTerritory as string).toUpperCase(),
-    );
+  if (q) {
+    sql += " AND name_display LIKE ?";
+    params.push(`%${q}%`);
+  }
 
-  sendList(res, result, result.length);
+  if (inTerritory) {
+    sql += " AND contained_un_region = ?";
+    params.push((inTerritory as string).toUpperCase());
+  }
+
+  const [rows] = (await pool.execute(sql, params)) as any[];
+  sendList(res, rows, rows.length);
 };

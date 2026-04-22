@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
-import { mockTerritoriesRaw } from "../../data/territory/territories_raw.mock";
+import pool from "../../db/connection";
+import { sendList } from "../../utils/response";
 
-export const getCuratedTerritories = (req: Request, res: Response) => {
-  res.status(200).json({
-    data: mockTerritoriesRaw,
-    meta: { total: mockTerritoriesRaw.length, page: 1, limit: 50 },
-  });
+export const getCuratedTerritories = async (_req: Request, res: Response) => {
+  const [rows] = (await pool.execute("SELECT * FROM territories_raw")) as any[];
+  sendList(res, rows, rows.length);
 };
