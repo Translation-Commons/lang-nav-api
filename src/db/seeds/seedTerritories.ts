@@ -7,14 +7,21 @@ import {
   parsePopulation,
 } from "../utils/parseTsv";
 
-const DATA_PATH =
-  process.env.DATA_PATH || path.join(process.cwd(), "../lang-nav/public/data");
+const BASE = process.env.DATA_BASE || "/home/ldijnpfhyij5/lang-nav/public/data";
+
+const PATHS = {
+  territories: path.join(BASE, "tc/territories.tsv"),
+  countryCoord: path.join(BASE, "other_sources/country-coord.csv"),
+  gdpLiteracy: path.join(BASE, "other_sources/territories_gdp_literacy.tsv"),
+  territoryNames: path.join(BASE, "wiki/territory_names.tsv"),
+};
 
 async function seedTerritoriesRaw() {
   console.log("Seeding territories_raw...");
-  const rows = parseTsv(path.join(DATA_PATH, "territories.tsv"));
+  const rows = parseTsv(PATHS.territories);
 
   for (const row of rows) {
+    if (!row["TerritoryCode"]) continue;
     await pool.execute(
       `INSERT INTO territories_raw 
         (territory_code, territory_name, territory_type, population, contained_un_region, sovereign)
@@ -40,9 +47,10 @@ async function seedTerritoriesRaw() {
 
 async function seedCountryCoord() {
   console.log("Seeding country_coord...");
-  const rows = parseCsv(path.join(DATA_PATH, "countrycoord.csv"));
+  const rows = parseCsv(PATHS.countryCoord);
 
   for (const row of rows) {
+    if (!row["Alpha-2 code"]) continue;
     await pool.execute(
       `INSERT INTO country_coord 
         (alpha2_code, name, alpha3_code, code_numeric, latitude, longitude)
@@ -66,7 +74,7 @@ async function seedCountryCoord() {
 
 async function seedTerritoriesGdpLiteracy() {
   console.log("Seeding territories_gdp_literacy...");
-  const rows = parseTsv(path.join(DATA_PATH, "territories_gdp_literacy.tsv"));
+  const rows = parseTsv(PATHS.gdpLiteracy);
 
   for (const row of rows) {
     if (!row["Territory Code"]) continue;
@@ -88,7 +96,7 @@ async function seedTerritoriesGdpLiteracy() {
 
 async function seedTerritoryNames() {
   console.log("Seeding territory_names...");
-  const rows = parseTsv(path.join(DATA_PATH, "territory_names.tsv"));
+  const rows = parseTsv(PATHS.territoryNames);
 
   for (const row of rows) {
     if (!row["ID"]) continue;
@@ -162,16 +170,20 @@ async function seedTerritoryEntity() {
   console.log("✓ Territory entity table seeded");
 }
 
+export async function seedTerritories() {
+  await seedTerritoriesRaw();
+  await seedCountryCoord();
+  await seedTerritoriesGdpLiteracy();
+  await seedTerritoryNames();
+  await seedTerritoryEntity();
+  console.log("\n✅ Territory seed complete");
+}
+
 async function main() {
   try {
-    await seedTerritoriesRaw();
-    await seedCountryCoord();
-    await seedTerritoriesGdpLiteracy();
-    await seedTerritoryNames();
-    await seedTerritoryEntity();
-    console.log("\nTerritory seed complete");
+    await seedTerritories();
   } catch (err) {
-    console.error("Seed failed:", err);
+    console.error("❌ Seed failed:", err);
   } finally {
     await pool.end();
   }
