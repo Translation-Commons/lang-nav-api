@@ -150,7 +150,7 @@ async function seedTerritoryEntity() {
       t.territory_code,
       c.alpha2_code,
       c.alpha3_code,
-      c.numeric_code
+      c.numeric_code,
       COALESCE(n.exonym, t.territory_name),
       n.endonym,
       n.endonym_source,
