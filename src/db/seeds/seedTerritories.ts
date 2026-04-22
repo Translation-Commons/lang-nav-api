@@ -137,6 +137,7 @@ async function seedTerritoryNames() {
 
 async function seedTerritoryEntity() {
   console.log("Seeding Territory entity table...");
+  await pool.execute("SET FOREIGN_KEY_CHECKS = 0");
   await pool.execute(`
     INSERT INTO Territory (
       id, code_alpha2, code_alpha3, code_numeric,
@@ -179,6 +180,7 @@ async function seedTerritoryEntity() {
       gdp = VALUES(gdp),
       literacy_percent = VALUES(literacy_percent)
   `);
+  await pool.execute("SET FOREIGN_KEY_CHECKS = 1");
   console.log("✓ Territory entity table seeded");
 }
 
