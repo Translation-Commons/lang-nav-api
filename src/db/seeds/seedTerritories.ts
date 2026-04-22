@@ -75,9 +75,20 @@ async function seedCountryCoord() {
 async function seedTerritoriesGdpLiteracy() {
   console.log("Seeding territories_gdp_literacy...");
   const rows = parseTsv(PATHS.gdpLiteracy);
+  let skipped = 0;
 
   for (const row of rows) {
     if (!row["Territory Code"]) continue;
+    const [existing] = (await pool.execute(
+      "SELECT territory_code FROM territories_raw WHERE territory_code = ?",
+      [row["Territory Code"]],
+    )) as any[];
+
+    if (existing.length === 0) {
+      skipped++;
+      continue;
+    }
+
     await pool.execute(
       `INSERT INTO territories_gdp_literacy (territory_code, gdp, literacy_percent)
        VALUES (?, ?, ?)
@@ -91,9 +102,10 @@ async function seedTerritoriesGdpLiteracy() {
       ],
     );
   }
-  console.log(`✓ territories_gdp_literacy: ${rows.length} rows`);
+  console.log(
+    `✓ territories_gdp_literacy: ${rows.length - skipped} rows (skipped ${skipped})`,
+  );
 }
-
 async function seedTerritoryNames() {
   console.log("Seeding territory_names...");
   const rows = parseTsv(PATHS.territoryNames);
