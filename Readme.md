@@ -37,6 +37,11 @@ npm run dev
 - `GET /api/variant/:id` — get variant tag by subtag
 - `GET /api/variant?q=` — search by name or subtag
 
+### Censuses
+- `GET /api/censuses` — list all censuses
+- `GET /api/censuses/:id` — get census by ID
+- `GET /api/censuses?territory=` — filter by territory code
+
 ### Writing Systems
 
 - `GET /api/writingsystems` — list all writing systems
@@ -85,5 +90,5 @@ npm install --include=dev
 ## Notes
 
 - Territoy endpoints connected to real database
-- Other entities (Language, WritingSystem, VariantTag) still using mock data
+- Other entities (Language, Locale, WritingSystem, VariantTag, Census) still using mock data
 - MySQL hosted on GoDaddy cPanel
