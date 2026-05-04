@@ -17,6 +17,13 @@ npm run dev
 - `GET /api/languages/:id` — get language by ISO 639-3 code
 - `GET /api/languages?q=` — search by name or code
 
+### Locales
+- `GET /api/locales` — list all locales
+- `GET /api/locales/:id` — get locale by BCP 47 tag
+- `GET /api/locales?q=` — search by name or code
+- `GET /api/locales?language=` — filter by language code
+- `GET /api/locales?territory=` — filter by territory code
+
 ### Territories
 
 - `GET /api/territories` — list all territories
@@ -43,19 +50,20 @@ npm run dev
 - `GET /api/ext/iana/variant` — IANA variant tag data
 - `GET /api/ext/unicode/cldr-coverage` — CLDR locale coverage data
 - `GET /api/ext/glottolog/languages` — Glottolog language data
-- `GET /api/ext/tc/language-names-french` — French names for languages
 - `GET /api/ext/glottolog/manual-iso-links` — Glottolog manual ISO mappings
 - `GET /api/ext/iso/iso-639-3` — ISO 639-3 language codes
 - `GET /api/ext/iso/macrolanguages` — ISO macrolanguage mappings
 - `GET /api/ext/iso/families` — ISO 639-5 language families
 - `GET /api/ext/iso/family-language-links` — family to language links
 - `GET /api/ext/iso/retirements` — retired ISO codes
+- `GET /api/ext/tc/language-names-french` — French names for languages
 
 ### Curated Data
 
 - `GET /api/curated/territories` — curated territory data
 - `GET /api/curated/writingsystems` — curated writing system data
 - `GET /api/curated/languages` — curated language data
+- `GET /api/curated/locales` — curated locale data
 
 ## Deployment (GoDaddy cPanel)
 

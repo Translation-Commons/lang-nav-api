@@ -10,6 +10,8 @@ import curatedWritingSystemRoutes from "./routes/writingsystem/curatedWritingSys
 import languageRoutes from "./routes/language/languageRoutes";
 import languageExtRoutes from "./routes/language/languageExtRoutes";
 import curatedLanguageRoutes from "./routes/language/curatedLanguageRoutes";
+import localeRoutes from "./routes/locale/localeRoutes";
+import curatedLocaleRoutes from "./routes/locale/curatedLocaleRoutes";
 import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
@@ -23,6 +25,7 @@ app.use("/api/territories", territoryRoutes);
 app.use("/api/variant", variantRoutes);
 app.use("/api/writingsystems", writingSystemRoutes);
 app.use("/api/languages", languageRoutes);
+app.use("/api/locales", localeRoutes);
 app.use("/api/ext", extRoutes);
 app.use("/api/ext", variantExtRoutes);
 app.use("/api/ext", writingSystemExtRoutes);
@@ -30,6 +33,7 @@ app.use("/api/ext", languageExtRoutes);
 app.use("/api/curated", curatedRoutes);
 app.use("/api/curated", curatedWritingSystemRoutes);
 app.use("/api/curated", curatedLanguageRoutes);
+app.use("/api/curated", curatedLocaleRoutes);
 
 app.use(errorHandler);
 
